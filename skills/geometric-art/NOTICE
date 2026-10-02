@@ -1,0 +1,6 @@
+This skill includes work based on third-party software.
+
+Geometric Art is ported from the Hero Geometric component in Componentry.
+Componentry, Copyright (c) harshjdhv, MIT License, https://github.com/harshjdhv/componentry/blob/main/LICENSE
+
+Simplex noise (GLSL): Ashima Arts / Ian McEwan, MIT License.

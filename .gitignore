@@ -1,0 +1,17 @@
+# Each user's filled-in setup stays on their machine. Only the .example files ship.
+config/user-config.md
+**/config/user-config.md
+
+# Never commit secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Noise
+.DS_Store
+Thumbs.db
+desktop.ini
+node_modules/
+__pycache__/

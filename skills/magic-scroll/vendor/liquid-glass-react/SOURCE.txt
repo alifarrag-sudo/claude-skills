@@ -1,0 +1,1 @@
+rdev/liquid-glass-react @ ac48eab18d1f7f444ae30002d240cae29c863a21 (2025-06-13), MIT. Cloned 2026-09-29. Ported to vanilla in ../../engine/liquid-glass.js

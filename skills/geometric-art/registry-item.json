@@ -1,0 +1,15 @@
+{
+  "$schema": "https://hyperframes.heygen.com/schema/registry-item.json",
+  "name": "geometric-art",
+  "type": "hyperframes:block",
+  "title": "Geometric Art",
+  "description": "Posterised gradient bands with Bayer-dithered edges flood in from a corner, then a masked headline rises.",
+  "tags": ["title-card", "gradient", "dither", "pixel", "shader", "typography", "background"],
+  "dimensions": { "width": 1920, "height": 1080 },
+  "duration": 8,
+  "files": [
+    { "path": "geometric-art.html", "target": "compositions/geometric-art/geometric-art.html", "type": "hyperframes:composition" },
+    { "path": "assets/geometric-art.js", "target": "compositions/geometric-art/assets/geometric-art.js", "type": "hyperframes:asset" },
+    { "path": "SKILL.md", "target": "compositions/geometric-art/SKILL.md", "type": "hyperframes:asset" }
+  ]
+}

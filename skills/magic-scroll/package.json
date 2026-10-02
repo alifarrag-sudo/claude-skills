@@ -1,0 +1,7 @@
+{
+  "name": "magic-scroll",
+  "private": true,
+  "type": "module",
+  "description": "Scroll-scrubbed image sequences + liquid glass. npm i once for scripts/qa.mjs.",
+  "dependencies": { "playwright-core": "^1" }
+}

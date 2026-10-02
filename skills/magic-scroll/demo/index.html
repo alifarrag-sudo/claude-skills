@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Magic Scroll demo</title>
+<link rel="icon" href="data:,">
+<link rel="preload" as="image" href="frames/desktop/frame_0001.webp" media="(min-width: 768px)">
+<link rel="preload" as="image" href="frames/mobile/frame_0001.webp" media="(max-width: 767px)">
+<link rel="stylesheet" href="../engine/magic-scroll.css">
+<style>
+  :root { --ms-bg: #111; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #0b0b0c; color: #f4f4f5; font: 16px/1.5 system-ui, sans-serif; }
+  .intro, .outro { min-height: 70vh; display: grid; place-content: center; text-align: center; padding: 0 16px; }
+  h1, h2 { margin: 0 0 8px; letter-spacing: -0.02em; }
+  h1 { font-size: clamp(32px, 6vw, 72px); }
+  .card { max-width: min(420px, calc(100vw - 32px)); padding: 24px 28px; }
+  .card h2 { font-size: clamp(22px, 3vw, 34px); }
+  .card p { margin: 0; opacity: 0.85; }
+  .pos-a { left: 6vw; top: 18vh; }
+  .pos-b { right: 6vw; top: 42vh; }
+  .pos-c { left: 6vw; bottom: 14vh; }
+  .pos-d { left: 50%; bottom: 10vh; margin-left: calc(min(420px, 100vw - 32px) / -2); text-align: center; }
+  .cta { display: inline-block; margin-top: 12px; padding: 10px 22px; border-radius: 999px; background: #fff; color: #111; font-weight: 600; text-decoration: none; }
+  .hud { width: 150px; font-variant-numeric: tabular-nums; position: fixed; right: 12px; bottom: 12px; z-index: 9; font: 12px/1.4 ui-monospace, monospace; padding: 8px 12px; }
+  @media (max-width: 767px) {
+    .pos-a, .pos-b, .pos-c, .pos-d { left: 16px; right: 16px; margin: 0; max-width: none; }
+    .pos-a { top: 12vh; } .pos-b { top: auto; bottom: 16vh; } .pos-c { top: auto; bottom: 16vh; } .pos-d { bottom: 8vh; }
+  }
+</style>
+</head>
+<body>
+  <header class="intro">
+    <h1>Magic Scroll</h1>
+    <p>Test sequence (synthetic Mandelbrot zoom). Scroll: the wheel is the timeline.</p>
+  </header>
+
+  <section class="ms-sequence" data-magic-scroll
+           data-frames="frames/desktop/" data-count="118"
+           data-mobile-frames="frames/mobile/" data-mobile-count="118"
+           data-fit="cover" data-height="500vh" data-mobile-height="360vh" data-preload="progressive">
+    <div class="ms-stage">
+      <img class="ms-poster" src="frames/desktop/frame_0001.webp" alt="Start state of the sequence" width="1280" height="720">
+      <canvas class="ms-canvas" aria-hidden="true"></canvas>
+
+      <div class="ms-overlay card pos-a" data-ms-range="0,0.25" data-liquid-glass data-lg-radius="28" data-lg-mode="shader">
+        <h2>Headline</h2><p>Frames 0 to 25 percent. Shader map sized to this card; the pane refracts the live canvas behind it.</p>
+      </div>
+      <div class="ms-overlay card pos-b" data-ms-range="0.25,0.5" data-liquid-glass data-lg-radius="28" data-lg-mode="polar">
+        <h2>Feature</h2><p>25 to 50 percent. Polar displacement map.</p>
+      </div>
+      <div class="ms-overlay card pos-c" data-ms-range="0.5,0.75" data-liquid-glass data-lg-radius="28" data-lg-mode="prominent">
+        <h2>Second message</h2><p>50 to 75 percent. Prominent map.</p>
+      </div>
+      <div class="ms-overlay card pos-d" data-ms-range="0.75,1" data-liquid-glass data-lg-radius="28" data-lg-mode="shader" data-lg-scale="40">
+        <h2>Call to action</h2><a class="cta" href="#end">Get started</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="outro" id="end"><h2>End of sequence</h2><p>Normal page flow resumes.</p></footer>
+  <div class="hud" data-liquid-glass data-lg-radius="999" aria-live="off"><span id="hud">frame -</span></div>
+
+  <script src="../engine/liquid-glass-maps.js"></script>
+  <script src="../engine/liquid-glass.js"></script>
+  <script src="../engine/magic-scroll.js"></script>
+  <script>
+    LiquidGlass.init();
+    var seqs = MagicScroll.init();
+    var hud = document.getElementById("hud");
+    seqs[0].options.onProgress = function (p, f) { hud.textContent = "frame " + f + "  " + Math.round(p * 100) + "%"; };
+  </script>
+</body>
+</html>
